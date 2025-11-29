@@ -74,7 +74,8 @@ function drawStatic() {
 // --------------------
 let starFrame = 0;
 let elfX = -200;
-let elfSpeed = 1.8;
+elfSpeed = Math.max(1.2, canvas.width / 800 * 1.5);
+
 
 function drawStar() {
     if (!tahti.complete || !kuusi.complete) return;
@@ -150,7 +151,7 @@ function drawText() {
     ctx.font = `${fontSize}px 'Meie Script'`;
     ctx.textAlign = "center";
     ctx.shadowColor = "white";
-    ctx.shadowBlur = 18;
+    ctx.shadowBlur = 8;
     const x = canvas.width / 2;
     const y = canvas.height * 0.18;
     ctx.fillStyle = "crimson";
@@ -176,12 +177,19 @@ function draw() {
     drawSnow();
     drawElf();
     drawText();
-
-    requestAnimationFrame(draw);
 }
 
 // Kun kuvat ladattu → piirretään staattinen ja käynnistetään animaatio
-bg.onload = () => {
-    drawStatic();
-    draw();
-};
+let loadedCount = 0;
+const images = [bg, kuusi, tahti, tonttu]; // odotetaan kaikki kuvat
+
+images.forEach(img => {
+  img.onload = () => {
+    loadedCount++;
+    if (loadedCount === images.length) {
+      drawStatic();              // piirretään tausta + kuusi bufferiin
+      setInterval(draw, 33);     // käynnistetään animaatio 30 FPS
+    }
+  };
+});
+
