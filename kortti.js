@@ -12,7 +12,7 @@ window.addEventListener("resize", resizeCanvas);
 // TAUSTAKUVA (COVER)
 // --------------------
 const bg = new Image();
-bg.src = "maisema2.png";
+bg.src = "maisema3koe.jpg";
 
 function drawBackground() {
     const imgW = bg.width;
@@ -69,7 +69,8 @@ function drawTree() {
     const treeWidth = base * 0.35;    // isompi mobiilissa
     const treeHeight = treeWidth * 1.45;
 
-    const x = canvas.width / 2 - treeWidth / 2;
+    // kuusi on keskellä const x = canvas.width / 2 - treeWidth / 2;
+    const x = canvas.width - treeWidth - 20;
     const y = canvas.height - treeHeight * 0.9;
 
     ctx.drawImage(kuusi, x, y, treeWidth, treeHeight);
@@ -83,7 +84,8 @@ function drawStar() {
     const treeWidth = base * 0.35;
     const treeHeight = treeWidth * 1.45;
 
-    const treeX = canvas.width / 2 - treeWidth / 2;
+    // tähti keskelläconst treeX = canvas.width / 2 - treeWidth / 2;
+    const treeX = canvas.width - treeWidth - 20; //tähti oikealle
     const treeY = canvas.height - treeHeight * 0.9;
 
     // Tähden koko suhteessa kuuseen
