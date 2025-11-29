@@ -177,6 +177,9 @@ function draw() {
     drawSnow();
     drawElf();
     drawText();
+
+    // Tämä palauttaa animaation synkronoinnin ruudunpäivitykseen
+    requestAnimationFrame(draw);
 }
 
 // Kun kuvat ladattu → piirretään staattinen ja käynnistetään animaatio
@@ -188,7 +191,8 @@ images.forEach(img => {
     loadedCount++;
     if (loadedCount === images.length) {
       drawStatic();              // piirretään tausta + kuusi bufferiin
-      setInterval(draw, 33);     // käynnistetään animaatio 30 FPS
+      // setInterval(draw, 33);     // käynnistetään animaatio 30 FPS
+      draw();        // käynnistetään animaatio, toimii ehkä Xcoverissa myös
     }
   };
 });
