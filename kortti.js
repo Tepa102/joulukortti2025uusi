@@ -27,7 +27,7 @@ const tahti = new Image();
 tahti.src = "latvatahti.png";
 
 const tonttu = new Image();
-tonttu.src = "tonttu.png";
+tonttu.src = "tonttu_pieni.png";
 
 // --------------------
 // STAATTINEN BUFFERI
@@ -136,7 +136,7 @@ function drawElf() {
     if (!tonttu.complete) return;
     const base = Math.min(canvas.width, canvas.height);
     const elfWidth = base * 0.18;
-    const elfHeight = elfWidth;
+    const elfHeight = elfWidth * (1536 /1024); //säilytetään kuvasuhde 2:3
     const elfY = canvas.height - elfHeight * 0.92;
     ctx.drawImage(tonttu, elfX, elfY, elfWidth, elfHeight);
     elfX += elfSpeed;
