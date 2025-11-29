@@ -193,3 +193,20 @@ images.forEach(img => {
   };
 });
 
+// ---------------------------
+//   MUSIIKKI + PLAY-NAPPI
+// ---------------------------
+const playButton = document.getElementById("playButton");
+const bgAudio = document.getElementById("bgAudio");
+
+playButton.addEventListener("click", () => {
+    bgAudio.volume = 0.7;   // miellyttävä äänenvoimakkuus
+    bgAudio.play()
+        .then(() => {
+            playButton.style.display = "none"; // piilotetaan nappi kun ääni alkaa
+        })
+        .catch(err => {
+            console.log("Äänen toistoa ei voitu käynnistää:", err);
+        });
+});
+
