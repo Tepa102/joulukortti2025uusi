@@ -201,9 +201,61 @@ images.forEach(img => {
 //   MUSIIKKI + PLAY-NAPPI
 // ---------------------------
 const playButton = document.getElementById("playButton");
-const bgAudio = document.getElementById("bgAudio");
+const bgAudio   = document.getElementById("bgAudio");
 
-playButton.addEventListener("click", () => {
+// Päivitä napin teksti tilan mukaan
+function updateButton() {
+    if (bgAudio.paused) {
+        playButton.textContent = '▶ Soita';
+        playButton.setAttribute('aria-pressed', 'false');
+    } else {
+        playButton.textContent = '⏸ Tauko';
+        playButton.setAttribute('aria-pressed', 'true');
+    }
+}
+
+// Soita / pysäytä
+async function toggleAudio() {
+    if (!bgAudio.src) {
+        alert('Audioa ei löydy (joulumusa.mp3).');
+        return;
+    }
+
+    if (bgAudio.paused) {
+        try {
+            await bgAudio.play();
+        } catch (err) {
+            console.warn("Autoplay estetty:", err);
+            alert("Selaimesi esti äänen. Yritä uudelleen.");
+        }
+    } else {
+        bgAudio.pause();
+    }
+
+    updateButton();
+}
+
+// Klikkaus
+playButton.addEventListener("click", toggleAudio);
+
+// Näppäimistö
+playButton.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        toggleAudio();
+    }
+});
+
+// Tilan muutokset
+bgAudio.addEventListener("play", updateButton);
+bgAudio.addEventListener("pause", updateButton);
+bgAudio.addEventListener("ended", updateButton);
+
+// Aseta alku-tila
+updateButton();
+
+
+/*playButton.addEventListener("click", () => {
     bgAudio.volume = 0.7;   // miellyttävä äänenvoimakkuus
     bgAudio.play()
         .then(() => {
@@ -213,4 +265,5 @@ playButton.addEventListener("click", () => {
             console.log("Äänen toistoa ei voitu käynnistää:", err);
         });
 });
+*/
 
