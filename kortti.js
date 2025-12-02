@@ -74,7 +74,7 @@ function drawStatic() {
 // --------------------
 let starFrame = 0;
 let elfX = -200;
-elfSpeed = Math.max(1.2, canvas.width / 800 * 1.5);
+elfSpeed = Math.max(1.2, canvas.width / 800 * 2.0);
 
 
 function drawStar() {
@@ -102,7 +102,7 @@ function drawStar() {
 
 const snowflakes = [];
 function createSnowflakes() {
-    const count = Math.floor((canvas.width + canvas.height) / 25);
+    const count = Math.min(80, Math.floor((canvas.width + canvas.height) / 40));
     snowflakes.length = 0;
     for (let i = 0; i < count; i++) {
         snowflakes.push({
@@ -147,11 +147,11 @@ function drawElf() {
 
 function drawText() {
     const text = "Hyvää Joulua";
-    const fontSize = canvas.width * 0.08;
+    const fontSize = canvas.width * 0.09;
     ctx.font = `${fontSize}px 'Meie Script'`;
     ctx.textAlign = "center";
     ctx.shadowColor = "white";
-    ctx.shadowBlur = 8;
+    ctx.shadowBlur = 4;
     const x = canvas.width / 2;
     const y = canvas.height * 0.18;
     ctx.fillStyle = "crimson";
