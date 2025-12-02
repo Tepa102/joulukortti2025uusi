@@ -36,27 +36,6 @@ button:hover {
   box-shadow: 0 0 14px rgba(255, 0, 0, 0.55);
 }
 
-#playButton {
-  position: fixed;
-  top: 15px;
-  left: 15px;
-
-  width: 175px;
-  height: 75px;
-
-  font-size: 18px;     /* pysyy saman kokoisena */
-  border-radius: 12px;
-  padding: 0;          /* EI skaalautuvaa paddingia */
-  background: crimson;
-  color: white;
-  border: 2px solid white;
-
-  z-index: 9999;
-}
-
-
-
-
 /* PLAY-napin uusi sijainti */
 #playButton {
   position: fixed;
